@@ -15,7 +15,14 @@
 		</select>
 		</p>
 		<h3 id='product_price' data-price = {{$product->price}}>Price: {{$product->price}}$</h3>
-		<a href="#" id='buy' class='btn btn-info'>Buy</a>
+		@if(Auth::check() && $user !== $product->user_id)
+		<a href="#" id='buy' class='btn btn-info'>Buy</a> 
+		@elseif($user === $product->user_id)
+		<a href="{{url('/')}}" class='btn btn-success'>Home</a>
+		@else
+		<a href="{{url('/login')}}" class='btn btn-primary'>Log In</a>
+		@endif
+
 	</div>
 </div>
 <!-- jQuery -->

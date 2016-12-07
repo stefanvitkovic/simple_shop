@@ -57,11 +57,16 @@ class ProductController extends Controller
 
     public function show(Product $id)
     {
-        return view('product',['product'=>$id]);
+        $user = Auth::id();
+        return view('product',['product'=>$id,'user'=>$user]);
     }
 
     public function buy(Request $request)
-    {  
+    {   
+        if(!Auth::check()){
+            return redirect('/');
+        }
+
         $sale = new Sale($request->all());
         $sale->buyer_id = Auth::id();
         $sale->save();

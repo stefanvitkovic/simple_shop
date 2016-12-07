@@ -7,7 +7,7 @@ $(document).ready(function(){
 	var product_quantity = $("#sel").val();
 	var product_price = $('#product_price').attr('data-price');
 
-	if(product_id.length && product_quantity.length && product_price.length > 0){
+	if(product_id.length && product_quantity.length && product_price.length > 0 ){
 
 	$.ajaxSetup({
 	  headers: {
