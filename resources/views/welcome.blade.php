@@ -4,7 +4,7 @@
 	<div class='col-md-8 col-md-offset-2'>
 	@foreach($products as $product)
 		<div class='col-md-6' style="border: 2px solid red">
-		{{$product->name}}
+		<a href="{{route('products',['id'=>$product->id])}}">{{$product->name}}</a>
 		</div>
 	@endforeach
 	</div>

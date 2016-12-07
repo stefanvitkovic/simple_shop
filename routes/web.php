@@ -10,7 +10,7 @@ Route::get('products/create','ProductController@create');
 
 Route::post('products','ProductController@store');
 
-Route::get('products/{id}','ProductController@show');
+Route::get('products/{id}','ProductController@show')->name('products');
 
 Route::post('products/buy',"ProductController@buy");
 

@@ -36,7 +36,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="{{url('/')}}">Home</a></li>
-          <li><a href="#">some page</a></li>
+          <li><a href="{{url('products/create')}}">Create</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
