@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('content')
-<div class='col-md-8 col-md-offset-2'>
+<div class='col-md-2'>
+	<p>Name: {{$info->name}}</p>
+	<a href="{{route('profile',['id'=>$info->id])}}"><p><i>profile</i></p></a>
+</div>
+<div class='col-md-8'>
 	<div class='col-md-4'>
 		<img src={{url('images/'.$product->image.'.jpg')}}>
 	</div>

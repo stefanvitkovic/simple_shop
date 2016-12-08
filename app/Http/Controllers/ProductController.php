@@ -16,11 +16,14 @@ use Image;
 
 use File;
 
+use DB;
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('status_id','2')->get();
+        $products = DB::table('products')
+                    ->join('users','user_id','=','users.id')
+                    ->select('products.*','users.name as uname')->get();
     	return view('welcome',['products'=>$products]);
     }
 
@@ -52,13 +55,14 @@ class ProductController extends Controller
             ])->first();
         $id=$id->id;
 
-    	return view('test',['id'=>$id]);
+    	return back()->with('message','Sale created !');
     }
 
     public function show(Product $id)
     {
         $user = Auth::id();
-        return view('product',['product'=>$id,'user'=>$user]);
+        $SellerInfo = User::where('id',$id->user_id)->first();
+        return view('product',['product'=>$id,'user'=>$user,'info'=>$SellerInfo]);
     }
 
     public function buy(Request $request)
@@ -72,7 +76,16 @@ class ProductController extends Controller
         $sale->save();
 
         $status = Product::findOrFail($request->products_id);
-        $status->status_id = 1;
+        $newQuantity = $status->quantity = ($status->quantity) - ($request->quantity);
+        if($newQuantity == 0){
+            $status->status_id = 1;
+        }
         $status->save();
+    }
+
+    public function delete($id)
+    {
+        Product::destroy($id);
+        return back();
     }
 }

@@ -14,6 +14,10 @@ Route::get('products/{id}','ProductController@show')->name('products');
 
 Route::post('products/buy',"ProductController@buy");
 
-Route::get('profile','UserController@index');
+Route::get('profile/{id}','UserController@index')->name('profile');
+
+Route::get('delete/{id}','ProductController@delete')->name('del');
+
+
 
 

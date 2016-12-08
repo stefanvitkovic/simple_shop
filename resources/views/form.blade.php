@@ -12,7 +12,7 @@
   </div>
   <div class="form-group">
     <label for="products_name">Quantity</label>
-    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="quantity">
+    <input type="number" min="1" class="form-control" id="quantity" name="quantity" placeholder="quantity">
   </div>
   <div class="form-group">
     <label for="products_description">Description</label>
@@ -24,5 +24,11 @@
     <p class="help-block">Example block-level help text here.</p>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
+  <br>
+  @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
 </form>
 @endsection
